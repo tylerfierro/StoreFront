@@ -18,36 +18,72 @@
     <link href="~/Content/https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="~/Content/css/business-casual.min.css" rel="stylesheet">
+    <link href="~/Content/css/business-casual.css" rel="stylesheet">
 </head>
 <body>
+    @*<div class="col-md-6 col-sm-6">
+            <div class="right-top">
+                <div class="social-box">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-rss-square" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>*@
     <h1 class="site-heading text-center text-white d-none d-lg-block">
-        <span class="site-heading-upper text-primary mb-3">A Free Bootstrap 4 Business Theme</span>
-        <span class="site-heading-lower">Business Casual</span>
+        <span class="site-heading-upper text-primary mb-3">Tyler Fierro</span>
+        <span class="site-heading-lower">Xbox Gaming</span>
     </h1>
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"] ?? "Home";
+        var currentAction = ViewContext.RouteData.Values["action"] ?? "Index";
+        var currentRoute = (currentController + "-" + currentAction).ToLower();
+    }
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
         <div class="container">
+            <div class="navbar-header"></div>
             <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggle-icon"></span>
             </button>
+            </div>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active px-lg-4">
                     </li>
-                    <li>
-                        @Html.ActionLink("Home", "Index", "Home", "null", new { @class = "nav-link text-uppercase text-expanded" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("About", "About", "Home", "null", new { @class = "nav-link text-uppercase text-expanded" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Products", "Products", "Home", "null", new { @class = "nav-link text-uppercase text-expanded" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Store", "Store", "Home", "null", new { @class = "nav-link text-uppercase text-expanded" })
-                    </li>
+            <li>
+                <div class="btn btn-primary">
+                    @Html.ActionLink("Home", "Index", "Home"@*, null, new { @class = currentRoute == "home-index" ? "active" : "" }*@)
+                </div>
+            </li>                     
+            <li>
+                <div class="btn btn-primary">
+                    @Html.ActionLink("About", "About", "Home"@*, null, new { @class = currentRoute == "about-home" ? "active" : "" }*@) 
+                </div>
+            </li>                                       
+            <li>
+                <div class="btn btn-primary">
+                    @Html.ActionLink("Products", "Products", "Home"@*, null, new { @class = currentRoute == "products-home" ? "active" : "" }*@)
+                </div>
+            </li>                                       
+            <li>
+                <div class="btn btn-primary">
+                    @Html.ActionLink("Store", "Store", "Home"@*, null, new { @class = currentRoute == "store-home" ? "active" : "" }*@)
+                </div>
+            </li>                    
+            <li>
+                <div class="btn btn-primary">
+                    @Html.ActionLink("Contact", "Contact", "Home"@*, null, new { @class = currentRoute == "contact-home" ? "active" : "" }*@)
+                </div>
+            </li>                   
                 </ul>
             </div>
         </div>
@@ -57,12 +93,12 @@
 
     <footer class="footer text-faded text-center py-5">
         <div class="container">
-            <p class="m-0 small">Copyright &copy; Your Website 2020</p>
+            <p class="m-0 small">Copyright &copy; Top of the Line Website 2020</p>
         </div>
     </footer>
     <!-- Bootstrap core JavaScript -->
-    @*<script src="~/Content/vendor/jquery/jquery.min.js"></script>
-        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     @RenderSection("scripts", false)
 

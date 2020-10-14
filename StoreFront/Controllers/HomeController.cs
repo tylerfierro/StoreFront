@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
 using System.Web.Mvc;
+using StoreFrontLabMVC.UI.MVC.Models;
 
 namespace StoreFront.Controllers
 {
@@ -15,7 +19,7 @@ namespace StoreFront.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "No Playstation users allowed here!! ";
 
             return View();
         }
@@ -23,6 +27,18 @@ namespace StoreFront.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult Products()
+        {
+            ViewBag.Message = "Take a look at what we have to offer!";
+
+            return View();
+        }
+        public ActionResult Store()
+        {
+            ViewBag.Message = "Welcome to our store's page.";
 
             return View();
         }
