@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoreFrontProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department's">
+          <Key>
+            <PropertyRef Name="DepartmentsID" />
+          </Key>
+          <Property Name="DepartmentsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptName" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="State" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Employee's">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="char" MaxLength="2" />
+          <Property Name="ZipCode" Type="char" MaxLength="6" />
+          <Property Name="Country" Type="varchar" MaxLength="30" />
+          <Property Name="DirectReportID" Type="int" />
+        </EntityType>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="int" Nullable="false" />
+          <Property Name="G_Name" Type="varchar" MaxLength="50" />
+          <Property Name="G_Company" Type="varchar" MaxLength="50" />
+          <Property Name="GamePrice" Type="money" />
+          <Property Name="G_Description" Type="varchar(max)" />
+          <Property Name="G_UnitsSold" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Xbox">
+          <Key>
+            <PropertyRef Name="XboxID" />
+          </Key>
+          <Property Name="XboxID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="XboxGameTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="AccessoriesID" Type="int" />
+          <Property Name="GamePrice" Type="money" />
+          <Property Name="XboxUnitsSold" Type="int" />
+          <Property Name="ReleaseDate" Type="date" />
+          <Property Name="ReleaseCompany" Type="int" Nullable="false" />
+          <Property Name="GameImage" Type="varchar" MaxLength="100" />
+          <Property Name="XboxStatusID" Type="int" Nullable="false" />
+          <Property Name="DepartmentsID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XboxAccessories">
+          <Key>
+            <PropertyRef Name="AccessoriesID" />
+          </Key>
+          <Property Name="AccessoriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccessoryStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Access_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XboxEmployees">
+          <Key>
+            <PropertyRef Name="XboxEmployeesID" />
+          </Key>
+          <Property Name="XboxEmployeesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XboxStatuses">
+          <Key>
+            <PropertyRef Name="XboxStatusID" />
+          </Key>
+          <Property Name="XboxStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Xbox_Department's">
+          <End Role="Department's" Type="Self.Department's" Multiplicity="1" />
+          <End Role="Xbox" Type="Self.Xbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department's">
+              <PropertyRef Name="DepartmentsID" />
+            </Principal>
+            <Dependent Role="Xbox">
+              <PropertyRef Name="DepartmentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xbox_XboxAccessories">
+          <End Role="XboxAccessories" Type="Self.XboxAccessories" Multiplicity="0..1" />
+          <End Role="Xbox" Type="Self.Xbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XboxAccessories">
+              <PropertyRef Name="AccessoriesID" />
+            </Principal>
+            <Dependent Role="Xbox">
+              <PropertyRef Name="AccessoriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xbox_XboxStatuses">
+          <End Role="XboxStatuses" Type="Self.XboxStatuses" Multiplicity="1" />
+          <End Role="Xbox" Type="Self.Xbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XboxStatuses">
+              <PropertyRef Name="XboxStatusID" />
+            </Principal>
+            <Dependent Role="Xbox">
+              <PropertyRef Name="XboxStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XboxEmployees_Employee's">
+          <End Role="Employee's" Type="Self.Employee's" Multiplicity="1" />
+          <End Role="XboxEmployees" Type="Self.XboxEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee's">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="XboxEmployees">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XboxEmployees_Games">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="XboxEmployees" Type="Self.XboxEmployees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="XboxEmployees">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontProjectModelStoreContainer">
+          <EntitySet Name="Department's" EntityType="Self.Department's" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee's" EntityType="Self.Employee's" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Xbox" EntityType="Self.Xbox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XboxAccessories" EntityType="Self.XboxAccessories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XboxEmployees" EntityType="Self.XboxEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XboxStatuses" EntityType="Self.XboxStatuses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Xbox_Department's" Association="Self.FK_Xbox_Department's">
+            <End Role="Department's" EntitySet="Department's" />
+            <End Role="Xbox" EntitySet="Xbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xbox_XboxAccessories" Association="Self.FK_Xbox_XboxAccessories">
+            <End Role="XboxAccessories" EntitySet="XboxAccessories" />
+            <End Role="Xbox" EntitySet="Xbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xbox_XboxStatuses" Association="Self.FK_Xbox_XboxStatuses">
+            <End Role="XboxStatuses" EntitySet="XboxStatuses" />
+            <End Role="Xbox" EntitySet="Xbox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XboxEmployees_Employee's" Association="Self.FK_XboxEmployees_Employee's">
+            <End Role="Employee's" EntitySet="Employee's" />
+            <End Role="XboxEmployees" EntitySet="XboxEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XboxEmployees_Games" Association="Self.FK_XboxEmployees_Games">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="XboxEmployees" EntitySet="XboxEmployees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreFrontProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department_s">
+          <Key>
+            <PropertyRef Name="DepartmentsID" />
+          </Key>
+          <Property Name="DepartmentsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Xboxes" Relationship="Self.FK_Xbox_Department_s" FromRole="Department_s" ToRole="Xbox" />
+        </EntityType>
+        <EntityType Name="Employee_s">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DirectReportID" Type="Int32" />
+          <NavigationProperty Name="XboxEmployees" Relationship="Self.FK_XboxEmployees_Employee_s" FromRole="Employee_s" ToRole="XboxEmployees" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="Int32" Nullable="false" />
+          <Property Name="G_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="G_Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GamePrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="G_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="G_UnitsSold" Type="Int32" />
+          <NavigationProperty Name="XboxEmployees" Relationship="Self.FK_XboxEmployees_Games" FromRole="Games" ToRole="XboxEmployees" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Xbox">
+          <Key>
+            <PropertyRef Name="XboxID" />
+          </Key>
+          <Property Name="XboxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="XboxGameTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccessoriesID" Type="Int32" />
+          <Property Name="GamePrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="XboxUnitsSold" Type="Int32" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+          <Property Name="ReleaseCompany" Type="Int32" Nullable="false" />
+          <Property Name="GameImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="XboxStatusID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentsID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department_s" Relationship="Self.FK_Xbox_Department_s" FromRole="Xbox" ToRole="Department_s" />
+          <NavigationProperty Name="XboxAccessory" Relationship="Self.FK_Xbox_XboxAccessories" FromRole="Xbox" ToRole="XboxAccessories" />
+          <NavigationProperty Name="XboxStatus" Relationship="Self.FK_Xbox_XboxStatuses" FromRole="Xbox" ToRole="XboxStatuses" />
+        </EntityType>
+        <EntityType Name="XboxAccessory">
+          <Key>
+            <PropertyRef Name="AccessoriesID" />
+          </Key>
+          <Property Name="AccessoriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccessoryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Access_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Xboxes" Relationship="Self.FK_Xbox_XboxAccessories" FromRole="XboxAccessories" ToRole="Xbox" />
+        </EntityType>
+        <EntityType Name="XboxEmployee">
+          <Key>
+            <PropertyRef Name="XboxEmployeesID" />
+          </Key>
+          <Property Name="XboxEmployeesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee_s" Relationship="Self.FK_XboxEmployees_Employee_s" FromRole="XboxEmployees" ToRole="Employee_s" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_XboxEmployees_Games" FromRole="XboxEmployees" ToRole="Games" />
+        </EntityType>
+        <EntityType Name="XboxStatus">
+          <Key>
+            <PropertyRef Name="XboxStatusID" />
+          </Key>
+          <Property Name="XboxStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Xboxes" Relationship="Self.FK_Xbox_XboxStatuses" FromRole="XboxStatuses" ToRole="Xbox" />
+        </EntityType>
+        <Association Name="FK_Xbox_Department_s">
+          <End Role="Department_s" Type="Self.Department_s" Multiplicity="1" />
+          <End Role="Xbox" Type="Self.Xbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department_s">
+              <PropertyRef Name="DepartmentsID" />
+            </Principal>
+            <Dependent Role="Xbox">
+              <PropertyRef Name="DepartmentsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XboxEmployees_Employee_s">
+          <End Role="Employee_s" Type="Self.Employee_s" Multiplicity="1" />
+          <End Role="XboxEmployees" Type="Self.XboxEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_s">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="XboxEmployees">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_XboxEmployees_Games">
+          <End Role="Games" Type="Self.Game" Multiplicity="1" />
+          <End Role="XboxEmployees" Type="Self.XboxEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="XboxEmployees">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xbox_XboxAccessories">
+          <End Role="XboxAccessories" Type="Self.XboxAccessory" Multiplicity="0..1" />
+          <End Role="Xbox" Type="Self.Xbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XboxAccessories">
+              <PropertyRef Name="AccessoriesID" />
+            </Principal>
+            <Dependent Role="Xbox">
+              <PropertyRef Name="AccessoriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xbox_XboxStatuses">
+          <End Role="XboxStatuses" Type="Self.XboxStatus" Multiplicity="1" />
+          <End Role="Xbox" Type="Self.Xbox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="XboxStatuses">
+              <PropertyRef Name="XboxStatusID" />
+            </Principal>
+            <Dependent Role="Xbox">
+              <PropertyRef Name="XboxStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoreFrontProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Department_s" EntityType="Self.Department_s" />
+          <EntitySet Name="Employee_s" EntityType="Self.Employee_s" />
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Xboxes" EntityType="Self.Xbox" />
+          <EntitySet Name="XboxAccessories" EntityType="Self.XboxAccessory" />
+          <EntitySet Name="XboxEmployees" EntityType="Self.XboxEmployee" />
+          <EntitySet Name="XboxStatuses" EntityType="Self.XboxStatus" />
+          <AssociationSet Name="FK_Xbox_Department_s" Association="Self.FK_Xbox_Department_s">
+            <End Role="Department_s" EntitySet="Department_s" />
+            <End Role="Xbox" EntitySet="Xboxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XboxEmployees_Employee_s" Association="Self.FK_XboxEmployees_Employee_s">
+            <End Role="Employee_s" EntitySet="Employee_s" />
+            <End Role="XboxEmployees" EntitySet="XboxEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_XboxEmployees_Games" Association="Self.FK_XboxEmployees_Games">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="XboxEmployees" EntitySet="XboxEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xbox_XboxAccessories" Association="Self.FK_Xbox_XboxAccessories">
+            <End Role="XboxAccessories" EntitySet="XboxAccessories" />
+            <End Role="Xbox" EntitySet="Xboxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xbox_XboxStatuses" Association="Self.FK_Xbox_XboxStatuses">
+            <End Role="XboxStatuses" EntitySet="XboxStatuses" />
+            <End Role="Xbox" EntitySet="Xboxes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreFrontProjectModelStoreContainer" CdmEntityContainer="StoreFrontProjectEntities">
+          <EntitySetMapping Name="Department_s">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.Department_s">
+              <MappingFragment StoreEntitySet="Department's">
+                <ScalarProperty Name="DepartmentsID" ColumnName="DepartmentsID" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_s">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.Employee_s">
+              <MappingFragment StoreEntitySet="Employee's">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="DirectReportID" ColumnName="DirectReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.Game">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="G_Name" ColumnName="G_Name" />
+                <ScalarProperty Name="G_Company" ColumnName="G_Company" />
+                <ScalarProperty Name="GamePrice" ColumnName="GamePrice" />
+                <ScalarProperty Name="G_Description" ColumnName="G_Description" />
+                <ScalarProperty Name="G_UnitsSold" ColumnName="G_UnitsSold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Xboxes">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.Xbox">
+              <MappingFragment StoreEntitySet="Xbox">
+                <ScalarProperty Name="XboxID" ColumnName="XboxID" />
+                <ScalarProperty Name="XboxGameTitle" ColumnName="XboxGameTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AccessoriesID" ColumnName="AccessoriesID" />
+                <ScalarProperty Name="GamePrice" ColumnName="GamePrice" />
+                <ScalarProperty Name="XboxUnitsSold" ColumnName="XboxUnitsSold" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="ReleaseCompany" ColumnName="ReleaseCompany" />
+                <ScalarProperty Name="GameImage" ColumnName="GameImage" />
+                <ScalarProperty Name="XboxStatusID" ColumnName="XboxStatusID" />
+                <ScalarProperty Name="DepartmentsID" ColumnName="DepartmentsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XboxAccessories">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.XboxAccessory">
+              <MappingFragment StoreEntitySet="XboxAccessories">
+                <ScalarProperty Name="AccessoriesID" ColumnName="AccessoriesID" />
+                <ScalarProperty Name="AccessoryStatus" ColumnName="AccessoryStatus" />
+                <ScalarProperty Name="Access_Name" ColumnName="Access_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XboxEmployees">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.XboxEmployee">
+              <MappingFragment StoreEntitySet="XboxEmployees">
+                <ScalarProperty Name="XboxEmployeesID" ColumnName="XboxEmployeesID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XboxStatuses">
+            <EntityTypeMapping TypeName="StoreFrontProjectModel.XboxStatus">
+              <MappingFragment StoreEntitySet="XboxStatuses">
+                <ScalarProperty Name="XboxStatusID" ColumnName="XboxStatusID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

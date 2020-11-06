@@ -1,7 +1,69 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@model IEnumerable<StoreFrontLab.DATA.EF.Games>
+
+@{ 
+    ViewBag.Title = "Games (Shopping Cart)";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GameID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.G_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.G_Company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GamePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.G_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.G_UnitsSold)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.G_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GamePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.G_UnitsSold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            <img src="~/Content/img/games/t_@item.GameImage" alt="Game cover" title="@item.G_Name" />
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Games", new { id=item.GameID })">
+                <i class="fa fa-pencil-square-o action-icons" aria-hidden="true"></i>
+            </a>
+            <a href="@Url.Action("Details", "Games", new { id = item.GameID })">
+                <i class="fa fa-info-circle action-icons" aria-hidden="true"></i>
+            </a>
+            <a href="@Url.Action("Delete", "Games", new { id = item.GameID })">
+                <i class="fa fa-trash-o action-icons" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+            }
+    </table>

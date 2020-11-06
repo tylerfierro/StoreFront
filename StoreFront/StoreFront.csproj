@@ -168,25 +168,35 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
+    <Compile Include="Controllers\FiltersController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StronglyTypedDataController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\CartItemViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\ImageService.cs" />
+    <Compile Include="Utilities\MathUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\business-casual.css" />
     <Content Include="Content\css\business-casual.min.css" />
     <Content Include="Content\img\about.jpg" />
     <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\IMG_4397.PNG" />
     <Content Include="Content\img\IMG_E4331.JPG" />
     <Content Include="Content\img\intro.jpg" />
     <Content Include="Content\img\products-01.jpg" />
@@ -330,7 +340,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\ContactViewModel\" />
+    <Folder Include="Views\Errors\" />
     <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +360,26 @@
     <Content Include="Views\Games\Delete.cshtml" />
     <Content Include="Views\Games\Edit.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\UserAdmin\Create.cshtml" />
+    <Content Include="Views\UserAdmin\Delete.cshtml" />
+    <Content Include="Views\UserAdmin\Details.cshtml" />
+    <Content Include="Views\UserAdmin\Edit.cshtml" />
+    <Content Include="Views\UserAdmin\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Filters\ClientSide.cshtml" />
+    <Content Include="Views\Filters\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreFrontLab.DATA.EF\StoreFrontLab.DATA.EF.csproj">
+      <Project>{fcda7c49-a7e7-4c58-9f44-ad814a37ced8}</Project>
+      <Name>StoreFrontLab.DATA.EF</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

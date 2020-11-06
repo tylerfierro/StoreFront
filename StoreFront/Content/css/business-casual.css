@@ -7,15 +7,22 @@
 body {
     font-family: 'Lora';
     /*background-image: linear-gradient(rgba(0, 128, 0, 0), rgba(0, 128, 0, 0), url("../img/bg.jpg");*/
-    background-image: url("~/Content/img/IMG_E4331.JPG");
+    background-image: url("/Content/img/IMG_E4331.JPG");
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
+    text-decoration-color: #fff;
 }
 
-h1,
-h2,
-h3,
+h1 {
+    text-decoration-color: #fff;
+}
+h2 {
+    text-decoration-color: #fff;
+}
+h3 {
+    text-decoration-color: #fff;
+}
 h4,
 h5,
 h6 {
@@ -23,11 +30,12 @@ h6 {
 }
 
 p {
-  line-height: 1.75;
+    text-decoration-color: #fff;
+    line-height: 1.75;
 }
 
 .text-faded {
-  color: green;
+    color: #008000;
 }
 
 .site-heading {
@@ -72,7 +80,7 @@ p {
 }
 
 .bg-faded {
-    background-color: green;
+    background-color: #008000;
 }
 
 #mainNav {
@@ -84,10 +92,10 @@ p {
         color: #008000;
     }
 
-#mainNav .navbar-nav .nav-item .nav-link {
-  color: green;
-  font-weight: 800;
-}
+    #mainNav .navbar-nav .nav-item .nav-link {
+        color: #008000;
+        font-weight: 800;
+    }
 
     #mainNav .navbar-nav .nav-item.active .nav-link {
         color: #008000;
@@ -97,9 +105,9 @@ p {
   #mainNav .navbar-nav .nav-item .nav-link {
     font-size: 0.9rem;
   }
-  #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: green;
-  }
+    #mainNav .navbar-nav .nav-item .nav-link:hover {
+        color: #008000;
+    }
     #mainNav .navbar-nav .nav-item.active .nav-link:hover {
         color: #008000;
     }
@@ -146,14 +154,14 @@ p {
 .cta {
     padding-top: 5rem;
     padding-bottom: 5rem;
-    background-color: green;
+    background-color: #008000;
 }
 
     .cta .cta-inner {
         position: relative;
         padding: 3rem;
         margin: 0.5rem;
-        background-color: green;
+        background-color: #008000;
     }
 
     .cta .cta-inner:before {

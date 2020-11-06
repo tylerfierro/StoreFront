@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ed1220f2a68147189fa8507624b085ed" Name="Diagram1">
+        <EntityTypeShape EntityType="StoreFrontProjectModel.Department_s" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.Employee_s" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.Game" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.Xbox" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.XboxAccessory" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.XboxEmployee" Width="1.5" PointX="8" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreFrontProjectModel.XboxStatus" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="StoreFrontProjectModel.FK_Xbox_Department_s" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontProjectModel.FK_XboxEmployees_Employee_s" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontProjectModel.FK_XboxEmployees_Games" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontProjectModel.FK_Xbox_XboxAccessories" ManuallyRouted="false" />
+        <AssociationConnector Association="StoreFrontProjectModel.FK_Xbox_XboxStatuses" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
