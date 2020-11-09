@@ -8,7 +8,7 @@
 }
 
 <p class="text-right">
-    @Html.ActionLink("Back to Shopping", "Index", "Books", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Back to Shopping", "Index", "Games", null, new { @class = "btn btn-info" })
 </p>
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -68,7 +68,7 @@ else
                 <td>
                     @* Calculate LineTotal & update the running total variable for each row *@
                     @{
-                        decimal? lineTotal = item.Value.Product.Price * item.Value.Qty;
+                        decimal? lineTotal = item.Value.Product.G_Price * item.Value.Qty;
                         cartTotal += lineTotal;
                     }
                     @string.Format($"{lineTotal:c}")
